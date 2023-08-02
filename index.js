@@ -8,13 +8,16 @@ require("express-async-errors");
 const connectDB = require("./db/connectdb");
 const tstRouter = require("./routes/tstroute");
 const productRouter = require("./routes/product")
+const paymentRouter = require("./routes/payment")
 const cors = require("cors");
+const Stripe = require("stripe")
 
 const app = express();
 
 const errorHandlerMiddleware = require("./middlewares/errorHandlerMiddleware");
 
 const notFound = require("./middlewares/notFound");
+// const { default: Stripe } = require("stripe");
 
 // middlewares
 app.use(express.json({ limit: "10mb" }));
@@ -23,12 +26,15 @@ app.use(cors());
 
 app.use(tstRouter);
 app.use(productRouter)
+app.use(paymentRouter)
 
 
 app.use(errorHandlerMiddleware);
 app.use(notFound);
 
-const port = process.env.PORT || 5000;
+
+
+const port = process.env.PORT || 5001;
 
 const start = async () => {
   try {
