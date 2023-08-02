@@ -54,7 +54,7 @@ const login = async (req, res) => {
       email: userFind.email,
       profilepic: userFind.profilepic,
     };
-    console.log(returnedKeys);
+ 
 
     res
       .status(StatusCodes.OK)
